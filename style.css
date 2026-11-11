@@ -1,0 +1,184 @@
+/* EDIT COLORS, SPACING AND TYPOGRAPHY HERE */
+:root {
+  --navy: #102a4c;
+  --navy-light: #173b63;
+  --gold: #ed6109;
+  --black: #111827;
+  --white: hsl(0, 25%, 97%);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: #fcfcfc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+}
+
+/* Business card ratio: 90 x 50 mm = 1.8 */
+.business-card {
+  width: min(900px, 100%);
+  aspect-ratio: 1.8 / 1;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 0.43fr;
+  gap: 22px;
+  padding: 9% 7%;
+  background: var(--white);
+  border: 7px solid var(--gold);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(16, 42, 76, .16);
+}
+
+.details, .qr-area { position: relative; z-index: 2; }
+
+h1 {
+  color: var(--navy);
+  font-size: clamp(30px, 6.1vw, 55px);
+  line-height: 1.1;
+  margin: 0 0 25px;
+  white-space: nowrap;
+   position: relative;
+  left: 20px;
+}
+
+.gold-rule {
+  height: 4px;
+  width: 90%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 0 25px;
+  position: relative;
+}
+.gold-rule span {
+  position: absolute;
+  width: 14px; height: 14px;
+  background: var(--gold);
+  transform: rotate(45deg);
+  left: 48%; top: -5px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 5px;
+  min-width: 0;
+  color: var(--black);
+  font-size: clamp(12px, 2.15vw, 23px);
+  white-space: nowrap;
+}
+.contact-row a {
+  color: var(--black);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.icon {
+  flex: 0 0 43px;
+  width: 43px; height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 22px;
+  font-weight: bold;
+}
+.linkedin-icon { font-size: 18px; }
+
+.qr-area {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.qr-frame {
+  width: min(190%, 300px);
+  aspect-ratio: 1;
+  padding: 5px;
+  border: 3px solid var(--gold);
+  border-radius: 20px;
+  background: white;
+}
+.qr-frame img { width: 100%; height: 100%; display: block; }
+.cv-button {
+  display: block;
+  width: 150%;
+  padding: 4px 4px;
+  text-align: center;
+  border-radius: 25px;
+  color: white;
+  background: var(--navy);
+  text-decoration: none;
+  font-size: clamp(10px, 1.8vw, 20px);
+  font-weight: bold;
+  letter-spacing: .2px;
+}
+.scan-note {
+  color: var(--gold);
+  font-size: 5px;
+  font-weight: bold;
+  letter-spacing: 1.0px;
+  margin: 5;
+  
+}
+
+.corner { position: absolute; z-index: 1; pointer-events: none; }
+.corner-top {
+  left: 0; top: 0; width: 25%; height: 35%;
+  background: linear-gradient(140deg, var(--navy) 0 48%, var(--gold) 40% 40%, transparent 54%);
+}
+.corner-bottom {
+  right: 0; bottom: 0; width: 25%; height: 34%;
+  background: linear-gradient(325deg, var(--navy) 0 48%, var(--gold) 40% 45%, transparent 54%);
+}
+
+@media (max-width: 620px) {
+  body { padding: 12px; }
+  .business-card {
+    aspect-ratio: auto;
+    min-height: 290px;
+    padding: 52px 18px 42px;
+    grid-template-columns: 1fr 115px;
+    gap: 10px;
+    border-radius: 15px;
+  }
+  h1 { font-size: clamp(19px, 5vw, 28px); margin-bottom: 12px; }
+  .gold-rule { margin-bottom: 16px; }
+  .contact-row { gap: 7px; margin-bottom: 12px; font-size: clamp(9px, 2.1vw, 12px); }
+  .icon { width: 26px; height: 26px; flex-basis: 26px; font-size: 14px; }
+  .linkedin-icon { font-size: 11px; }
+  .qr-frame { padding: 6px; border-width: 2px; border-radius: 9px; }
+  .qr-area { gap: 8px; }
+  .cv-button { font-size: 9px; padding: 8px 2px; }
+  .scan-note { font-size: 7px; letter-spacing: .7px; }
+}
+@media print {
+  @page { size: 90mm 50mm; margin: 0; }
+  html, body { width: 90mm; height: 50mm; background: white; padding: 0; margin: 0; }
+  .business-card {
+    width: 90mm; height: 50mm; aspect-ratio: auto;
+    border-radius: 0; border-width: .4mm; box-shadow: none;
+    padding: 8.5mm 5.5mm; gap: 2mm;
+    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+  }
+  h1 { font-size: 15pt; margin-bottom: 4mm; }
+  .gold-rule { margin-bottom: 4mm; }
+  .contact-row { font-size: 6.2pt; gap: 2mm; margin-bottom: 2.5mm; }
+  .icon { width: 6mm; height: 6mm; flex-basis: 6mm; font-size: 8pt; }
+  .qr-frame { width: 22mm; padding: .7mm; border-width: .7mm; }
+  .qr-area { gap: 1mm; }
+  .cv-button { font-size: 6pt; padding: 1.5mm 1mm; }
+  .scan-note { font-size: 4.5pt; }
+}
